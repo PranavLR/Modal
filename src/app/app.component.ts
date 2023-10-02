@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
+import { ModalService } from './modal/services/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Modal';
+  constructor(private modalService: ModalService) {}
+
+  openModal(modalTemplate: TemplateRef<any>) {
+    this.modalService.open(modalTemplate, { size: 'lg', title: 'Foo' }).subscribe((action) => {
+        console.log('modalAction', action);
+      });
+  }
 }
